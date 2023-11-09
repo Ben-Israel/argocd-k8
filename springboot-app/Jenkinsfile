@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'abhishekf5/maven-abhishek-docker-agent:v1'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+            args '-u root:sudo -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage ('SonarQube Code Analysis') {
             environment {
-                SONAR_URL = "http://35.188.185.166:9000/"
+                SONAR_URL = "http://34.123.19.40:9000/"
             }
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
