@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent any
         // docker {
         //     image 'abhishekf5/maven-abhishek-docker-agent:v1'
         //     args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage ('GIT Checkout') {
             steps {
-                //git branch: 'main', url: 'https://github.com/ben-israel/argocd-k8.git'
+                git branch: 'main', url: 'https://github.com/ben-israel/argocd-k8.git'
                 sh 'echo passed!'
             }
         }
